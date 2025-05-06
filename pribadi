@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Chat Tamu - Undangan</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #e5ddd5;
+      margin: 0;
+      padding: 0;
+    }
+    .chat-container {
+      max-width: 400px;
+      margin: 30px auto;
+      background: #fff;
+      border-radius: 10px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      height: 80vh;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+    .messages {
+      flex: 1;
+      padding: 10px;
+      overflow-y: auto;
+    }
+    .message {
+      background: #dcf8c6;
+      margin: 5px 0;
+      padding: 8px 12px;
+      border-radius: 8px;
+      max-width: 75%;
+    }
+    .form {
+      display: flex;
+      padding: 10px;
+      gap: 5px;
+      border-top: 1px solid #ccc;
+      background: #f0f0f0;
+    }
+    .form input, .form button {
+      padding: 8px;
+      font-size: 14px;
+    }
+    .form input {
+      flex: 1;
+    }
+  </style>
+</head>
+<body>
+  <div class="chat-container">
+    <div class="messages" id="chatBox"></div>
+    <div class="form">
+      <input type="text" id="nameInput" placeholder="Nama Anda" />
+      <input type="text" id="msgInput" placeholder="Tulis pesan..." />
+      <button onclick="sendMsg()">Kirim</button>
+    </div>
+  </div>
+
+  <script>
+    const chatBox = document.getElementById("chatBox");
+
+    function sendMsg() {
+      const name = document.getElementById("nameInput").value.trim();
+      const msg = document.getElementById("msgInput").value.trim();
+      if (!name || !msg) return alert("Isi nama dan pesan!");
+
+      const div = document.createElement("div");
+      div.className = "message";
+      div.textContent = name + ": " + msg;
+      chatBox.appendChild(div);
+      document.getElementById("msgInput").value = "";
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+  </script>
+</body>
+</html>
